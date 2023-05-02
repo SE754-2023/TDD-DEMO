@@ -35,8 +35,9 @@ public class PasswordCheckerTest {
   @Test
   public void When_PwdAtLeast8Characters_Expect_Accepted
   () {
+    User user = new User("bob");
     PasswordChecker checker = new PasswordChecker();
-    boolean result = checker.isValid("12345678");
+    boolean result = checker.isValid("12345678", user);
     assertTrue(result);
   }
 
@@ -44,9 +45,20 @@ public class PasswordCheckerTest {
   @Test
   public void When_PwdWithLEssThan8Characters_Expect_Declined
   () {
+    User user = new User("bob");
+
     PasswordChecker checker = new PasswordChecker();
-    boolean result = checker.isValid("hello");
+    boolean result = checker.isValid("hello", user);
     assertFalse(result);
   }
+
+  @Test
+  public void When_PwdDoesNotContainUserName_Expect_Declined() {
+    User user = new User("bob");
+    PasswordChecker checker = new PasswordChecker();
+    boolean result = checker.isValid("bob12345678", user);
+    assertFalse(result);
+  }
+
 
 }
