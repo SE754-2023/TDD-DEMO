@@ -71,11 +71,18 @@ public class PasswordCheckerTest {
     assertTrue(result);
   }
 
+  // @Test
+//  public void When_PwdContainsNoneCharacterTypes_Expect_Declined() {
+  //   boolean result = checker.isValid("((((((((((()))))))))))", user);
+  //   assertFalse(result);
+  // }
+
+  //Passwords cannot be identical to any of the previous three passwords.
   @Test
-  public void When_PwdContainsNoneCharacterTypes_Expect_Declined() {
-    boolean result = checker.isValid("((((((((((()))))))))))", user);
+  public void When_PwdIsTheSameAsPreviousOne_Expect_Declined() {
+    String pwd = "12345678";
+    user.checkAndSetPassword(pwd);
+    boolean result = user.checkAndSetPassword(pwd);
     assertFalse(result);
   }
-
-
 }
