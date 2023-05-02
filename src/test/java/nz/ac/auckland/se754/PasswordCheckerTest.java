@@ -1,5 +1,9 @@
 package nz.ac.auckland.se754;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 /**
  * USER STORY:
  * <p>
@@ -25,6 +29,18 @@ package nz.ac.auckland.se754;
  * .....
  */
 public class PasswordCheckerTest {
+
+  //  A user should be able to set a password of at least 8 characters [POSITIVE]
+  @Test
+  public void When_PwdAtLeast8Characters_Expect_Accepted
+  () {
+    //arrange
+    PasswordChecker checker = new PasswordChecker();
+    // act
+    boolean result = checker.isValid("12345678");
+    // assert
+    assertTrue(result);
+  }
 
 
 }
